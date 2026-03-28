@@ -1,7 +1,7 @@
 import test, {expect} from "@playwright/test"
 
 
-test.only ('teste so', async ({page}) => {
+test ('teste so', async ({page}) => {
 await page.goto('https:www.saucedemo.com/');
 await page.getByPlaceholder('Username').fill('standard_user1') ;
 await page.getByTestId('password').fill('secret_sauce');
