@@ -1,4 +1,4 @@
-import test, {expect} from "@playwright/test";
+import {test, expect} from "@playwright/test";
 
 test ('basic actions', async({page}) => { 
 await page.goto('https://the-internet.herokuapp.com/forgot_password');
@@ -21,14 +21,14 @@ await expect(checkbox2).not.toBeChecked();
 await expect(checkbox1).toBeChecked();
 })      
 
-test.only ('basic actions 2', async({page}) => { 
+test ('basic actions 2', async({page}) => { 
  //dropdown
 await page.goto('https://the-internet.herokuapp.com/dropdown');
 const dropdown = page.locator('select#dropdown');
 await dropdown.selectOption('1');
-expect(dropdown).toHaveValue('1');
+await expect(dropdown).toHaveValue('1');
 await dropdown.selectOption({ label: 'Option 2' });
-expect(dropdown).toHaveValue('2');
+await expect(dropdown).toHaveValue('2');
 
 //hover
 await page.goto('https://the-internet.herokuapp.com/hovers');
@@ -46,17 +46,17 @@ const url3 = img3.locator('a[href="/users/3"]');
 
 await img1.hover();
 await expect(imgInfo1).toBeVisible();
-await expect(imgInfo2).not.toBeVisible();
-await expect(imgInfo3).not.toBeVisible();
+await expect(imgInfo2).toBeHidden();
+await expect(imgInfo3).toBeHidden();
 
 await img2.hover();
-await expect(imgInfo1).not.toBeVisible();
+await expect(imgInfo1).toBeHidden();
 await expect(imgInfo2).toBeVisible();
-await expect(imgInfo3).not.toBeVisible();
+await expect(imgInfo3).toBeHidden();
 
 await img3.hover();
-await expect(imgInfo1).not.toBeVisible();
-await expect(imgInfo2).not.toBeVisible();
+await expect(imgInfo1).toBeHidden();
+await expect(imgInfo2).toBeHidden();
 await expect(imgInfo3).toBeVisible();
 
 await url3.click();

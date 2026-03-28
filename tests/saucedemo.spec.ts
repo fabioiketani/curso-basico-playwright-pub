@@ -1,4 +1,4 @@
-import test, { expect } from "@playwright/test";
+import {test,  expect } from "@playwright/test";
 
 test ('Localizando por data-test', async({page})=>{
 await page.goto('https://www.saucedemo.com');
@@ -10,7 +10,7 @@ await page.getByText('Login').click();
 
 test ('asserts basicos', async({page})=>{
     await page.goto('https://www.saucedemo.com');
-    const color = await page.getByTestId('login-button');
+    const color = page.getByTestId('login-button');
     await expect(color).toHaveCSS('background-color','rgb(61, 220, 145)');
     await expect(color).toHaveAttribute('value','Login');
    // await expect(color).toBeVisible();
